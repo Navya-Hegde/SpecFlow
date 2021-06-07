@@ -200,7 +200,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("update UserDetails")]
         [NUnit.Framework.CategoryAttribute("Put")]
-        [NUnit.Framework.TestCaseAttribute("4", "201", "Shripas", "shripad.hegde@gmail.com", "India", null)]
+        [NUnit.Framework.TestCaseAttribute("4", "201", "Shripad", "shripad.hegde@gmail.com", "India", null)]
         public virtual void UpdateUserDetails(string id, string returnCode, string name, string email, string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -258,6 +258,57 @@ this.ScenarioInitialize(scenarioInfo);
 #line 38
  testRunner.And(string.Format("verify userdetail data with given inputs name is {0} and email is {1} and country" +
                             " is {2}", name, email, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("delete UserDetails")]
+        [NUnit.Framework.CategoryAttribute("Delete")]
+        [NUnit.Framework.TestCaseAttribute("4", "204", null)]
+        [NUnit.Framework.TestCaseAttribute("10", "400", null)]
+        public virtual void DeleteUserDetails(string id, string returnCode, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Delete"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("id", id);
+            argumentsOfScenario.Add("returnCode", returnCode);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("delete UserDetails", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 45
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 46
+ testRunner.Given(string.Format("I want run Userdetail api and id is {0}", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 47
+ testRunner.When("I execute delete userdetail api", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 48
+ testRunner.Then(string.Format("I should get returnCode as {0}", returnCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

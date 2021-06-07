@@ -51,7 +51,7 @@ namespace SpecFlowTest
         public void ThenVerifyUserdetailDataWithGivenInputsNameIsAndEmailIsAndCountryIs(string name, string email, string country)
         {
             var response = JsonConvert.DeserializeObject<User>(_getResponse.Content.ReadAsStringAsync().Result);
-            Assert.Equal(name, response?.Name??string.Empty);
+            Assert.Equal(name, response?.Name ?? string.Empty);
             Assert.Equal(email, response?.Email??string.Empty);
             Assert.Equal(country, response?.Country??string.Empty);
         }
@@ -92,7 +92,7 @@ namespace SpecFlowTest
             _user.Email = email;
         }
 
-        [Given(@"update country (.*)")]
+        [Given(@"update country is (.*)")]
         public void GivenUpdateCountry(string country)
         {
             _user.Country = country;
@@ -101,8 +101,13 @@ namespace SpecFlowTest
         [When(@"I execute update userdetail api")]
         public void WhenIExecuteUpdateUserdetailApi()
         {
-            _getResponse = RestServiceCall.UpdateUser(_user.Id);
+            _getResponse = RestServiceCall.UpdateUser(_user);
         }
 
+        [When(@"I execute delete userdetail api")]
+        public void WhenIExecuteDeleteUserdetailApi()
+        {
+            _getResponse = RestServiceCall.DeleteUserById(_user.Id);
+        }
     }
 }

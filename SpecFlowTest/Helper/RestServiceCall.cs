@@ -35,13 +35,27 @@ namespace SpecFlowTest.Helper
             return response;
         }
 
-        public static HttpResponseMessage UpdateUser(int id)
+        public static HttpResponseMessage UpdateUser(User user)
         {
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri(_baseUri);
-            HttpResponseMessage response = _httpClient.GetAsync($"api/User?id={id}").Result;
+            var content = JsonConvert.SerializeObject(user);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage response = _httpClient.PutAsync($"api/User?id={user.Id}",byteContent).Result;
 
             return response;
         }
+
+        public static HttpResponseMessage DeleteUserById(int id)
+        {
+            _httpClient = new HttpClient();
+            _httpClient.BaseAddress = new Uri(_baseUri);
+            HttpResponseMessage response = _httpClient.DeleteAsync($"api/User?id={id}").Result;
+
+            return response;
+        }
+
     }
 }
